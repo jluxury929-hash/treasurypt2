@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 3000;
 const provider = new ethers.providers.AlchemyProvider('homestead', ALCHEMY_API_KEY);
 const treasuryWallet = new ethers.Wallet(TREASURY_PRIVATE_KEY, provider);
 
-console.log(`🏦 Treasury: ${treasuryWallet.address}`);
+console.log(` Treasury: ${treasuryWallet.address}`);
 
 app.get('/', async (req, res) => {
   const balance = await provider.getBalance(treasuryWallet.address);
@@ -33,7 +33,7 @@ app.get('/', async (req, res) => {
 app.post('/api/claim/earnings', async (req, res) => {
   const { userWallet, amountETH, amountUSD, backupId } = req.body;
 
-  console.log(`🚀 Withdrawal: ${amountETH} ETH to ${userWallet}`);
+  console.log(` Withdrawal: ${amountETH} ETH to ${userWallet}`);
 
   try {
     if (!ethers.utils.isAddress(userWallet)) {
@@ -62,7 +62,7 @@ app.post('/api/claim/earnings', async (req, res) => {
 
     const receipt = await tx.wait();
 
-    console.log(`🎉 Confirmed! Block ${receipt.blockNumber}`);
+    console.log(` Confirmed! Block ${receipt.blockNumber}`);
 
     res.json({
       success: true,
