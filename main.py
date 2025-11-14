@@ -1,4 +1,4 @@
-// 🔥 PRODUCTION TREASURY - SENDS REAL ETH
+// PRODUCTION TREASURY - SENDS REAL ETH
 const express = require('express');
 const { ethers } = require('ethers');
 const cors = require('cors');
@@ -58,7 +58,7 @@ app.post('/api/claim/earnings', async (req, res) => {
       value: amountWei
     });
 
-    console.log(`✅ TX: ${tx.hash}`);
+    console.log(` TX: ${tx.hash}`);
 
     const receipt = await tx.wait();
 
@@ -76,11 +76,11 @@ app.post('/api/claim/earnings', async (req, res) => {
     });
 
   } catch (error) {
-    console.error(`❌ Failed: ${error.message}`);
+    console.error(` Failed: ${error.message}`);
     res.status(400).json({ success: false, error: error.message });
   }
 });
 
 app.listen(PORT, () => {
-  console.log(`🚀 Treasury running on ${PORT}`);
+  console.log(` Treasury running on ${PORT}`);
 });
